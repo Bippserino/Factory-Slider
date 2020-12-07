@@ -11,7 +11,6 @@ class Slider {
         this.sliderWidth = parseFloat($(".slider").css("width").slice(0,-2),10)
     }
     
-
     // Get all pictures and their positions and save it in format [picture name, left edge offset, right edge offset] and get slider position
     getOffsetArray() {
         let pictures = $(".slider__row--img")
@@ -34,6 +33,16 @@ class Slider {
         this.sliderPositon = $(".slider").offset()["left"]
         this.sliderWidth = parseFloat($(".slider").css("width").slice(0,-2),10)
         this.offsetArray = pictures
+    }
+
+    // Set width of a slider row
+    setSliderWidth() {
+        let picturesWidth = 0
+        let pictures = $(".slider img")
+        for (let i = 0; i< pictures.length; i++) {
+          picturesWidth += $(pictures).width()
+        }
+        $(".slider__row").css("width",picturesWidth + "px")
     }
 
     // Get picture width
@@ -184,4 +193,5 @@ var slider
 $(document).ready(() => {
     slider = new Slider()
     slider.enableButtons()
+    slider.setSliderWidth()
 });
