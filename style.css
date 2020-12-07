@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Montserrat&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding-top: 10rem;
+    font-family: 'Merriweather', serif;
+}
+
+#slider {
+    display: flex;
+    width: 100%;
+    height: 70vh;
+    padding-right: 30px;
+    border-radius: 20px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.slider {
+    display: inline-block;
+    height: 100%;
+    width: 40%;
+    overflow-x: hidden;
+    direction: rtl;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    animation: moveInLeft 1s; 
+}
+
+.slider__row {
+    font-size: 0;
+    position: relative;
+    height: 45%;
+    width: 500%;
+    left: 0;
+}
+
+.slider__row:last-child {
+    margin-top: 10px;
+    left: -50px
+}
+
+.slider__row--img {
+    height: 100%;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.slider__row--img:first-child {
+    margin-right: 0;
+}
+
+.button-box {
+    position: relative;
+    display: inline-block;
+    top: 50%;
+    height: 100px;
+    transform: translateY(calc(-50% - 10px));
+    margin-left: 50px;
+    margin-right: 100px;
+    animation: fadeIn 2s;
+}
+
+.button {
+    display: block;
+    width: 75px;
+    height: 50px;
+    position: relative;
+}
+
+.button img {
+    padding: 10px 30px;
+    width: 20px;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.button:first-child {
+    top: 2px;
+    border-top-left-radius: 100%;
+    border-top-right-radius: 100%;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3)
+}
+
+.button:last-child {
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3)
+}
+
+.button:hover {
+    animation: rotateCW 1s;
+}
+
+.button img:hover {
+    filter: invert(52%) sepia(75%) saturate(1548%) hue-rotate(150deg) brightness(94%) contrast(101%);
+}
+
+.red {
+    filter: invert(80%) sepia(11%) saturate(6170%) hue-rotate(307deg) brightness(102%) contrast(89%);
+}
+
+.text-box {
+    text-align: center;
+    display: inline-block;
+    width: 30%;
+    animation: moveInBottom 1s;
+}
+
+.text-box h1 {
+    margin-bottom: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    color: #185289;
+    font-size: 3rem;
+}
+
+.text-box p {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    line-height: 1.5;
+}
+
+@keyframes rotateCW {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes moveInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%); 
+    }
+
+    80% {
+      transform: translateX(1%); 
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0); 
+    } 
+}
+
+@keyframes moveInBottom {
+    0% {
+      opacity: 0;
+      transform: translateY(3rem);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate(0); 
+    } 
+}
+
+@keyframes fadeIn {
+    0%{
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
