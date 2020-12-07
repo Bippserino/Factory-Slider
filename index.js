@@ -138,6 +138,7 @@ class Slider {
             }
             
             else if (event.target.classList[1] === "previous") {
+                // Disable animations while in preparation
                 $(".slider__row").css("transition","none")
                 
                 // Add last pictures of each row to the front
@@ -147,8 +148,6 @@ class Slider {
                 // Prepare it for animation transition
                 $(".row-1").css("left", `${previousOffsetRow1 + $(`.row-1 img:last-child`).width() + 5}px`)
                 $(".row-2").css("left", `${previousOffsetRow2 + $(`.row-2 img:last-child`).width() + 5}px`)
-                
-                // Remove the coppied images and refresh the offset array
                 
                 this.getOffsetArray()
 
@@ -162,6 +161,7 @@ class Slider {
                 $(".row-1").css("left",`${previousOffsetRow1 - (previousPicture - (this.sliderPositon + this.sliderWidth))}px`)
                 $(".row-2").css("left", `${previousOffsetRow2 - (previousPicture - (this.sliderPositon + this.sliderWidth))}px`)
                 
+                // After animation remove them
                 setTimeout(() => {
                     $(`.row-1 img:last-child`).remove()
                     $(`.row-2 img:last-child`).remove() 
@@ -173,6 +173,8 @@ class Slider {
             setTimeout(() => {
                 this.checkIfInsideViewport()
             }, 1000)
+
+            // Disable button press and enable after animation is done
             this.disableAndEnableButtons()
         })
             
