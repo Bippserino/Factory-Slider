@@ -140,25 +140,36 @@ class Slider {
             else if (event.target.classList[1] === "previous") {
                 $(".slider__row").css("transition","none")
                 
+                // Add last pictures of each row to the front
                 this.addPictureToFront($(`.row-1 img:last-child`)[0].outerHTML, $(".row-1"))
                 this.addPictureToFront($(`.row-2 img:last-child`)[0].outerHTML, $(".row-2"))
                 
+                // Prepare it for animation transition
                 $(".row-1").css("left", `${previousOffsetRow1 + $(`.row-1 img:last-child`).width() + 5}px`)
                 $(".row-2").css("left", `${previousOffsetRow2 + $(`.row-2 img:last-child`).width() + 5}px`)
                 
+                // Remove the coppied images and refresh the offset array
                 
-                $(`.row-1 img:last-child`).remove()
-                $(`.row-2 img:last-child`).remove()
                 this.getOffsetArray()
 
+                // Turn on animation transition and refresh row offsets
                 $(".slider__row").css("transition","1s")
                 previousOffsetRow1 = parseInt($(".row-1").css("left").slice(0,-2),10)
                 previousOffsetRow2 = parseInt($(".row-2").css("left").slice(0,-2),10)
 
+                // Find picture to go back to and move animation
                 let previousPicture = this.findPreviousPicture()
                 $(".row-1").css("left",`${previousOffsetRow1 - (previousPicture - (this.sliderPositon + this.sliderWidth))}px`)
-                $(".row-2").css("left", `${previousOffsetRow2 - (previousPicture - (this.sliderPositon + this.sliderWidth))}px`)   
+                $(".row-2").css("left", `${previousOffsetRow2 - (previousPicture - (this.sliderPositon + this.sliderWidth))}px`)
+                
+                setTimeout(() => {
+                    $(`.row-1 img:last-child`).remove()
+                    $(`.row-2 img:last-child`).remove() 
+                }, 1000)
+                
             }
+            
+            // After animations are done, remove those outside of the viewport on the right side of the screen
             setTimeout(() => {
                 this.checkIfInsideViewport()
             }, 1000)
