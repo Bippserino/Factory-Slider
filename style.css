@@ -94,11 +94,23 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3)
 }
 
-.button:hover {
-    animation: rotateCW 1s;
+.button:last-child:hover {
+    transform: translateY(0.3rem);
 }
 
-.button img:hover {
+.button:first-child:hover {
+    transform: translateY(-0.3rem);
+}
+
+.button:active:first-child {
+    transform: translateY(5%);
+}
+
+.button:active:last-child {
+    transform: translateY(-5%);
+}
+
+.button:hover {
     filter: invert(52%) sepia(75%) saturate(1548%) hue-rotate(150deg) brightness(94%) contrast(101%);
 }
 
