@@ -1,0 +1,22 @@
+{
+  "name": "factory",
+  "version": "1.0.0",
+  "description": "slider",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "node-sass sass/style.scss css/style.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bippserino/Factory-Slider.git"
+  },
+  "author": "Bojan Mandic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bippserino/Factory-Slider/issues"
+  },
+  "homepage": "https://github.com/Bippserino/Factory-Slider#readme",
+  "devDependencies": {
+    "node-sass": "^5.0.0"
+  }
+}
