@@ -178,6 +178,31 @@ class Slider {
         }, 1000)
     }
 
+    // Check if viewport is filled with images
+    isViewportNotFilled(row) {
+        let rowImages = $(row + " img")
+        for (let i = 0; i < rowImages.length; i++) {
+            if ($(rowImages[i]).offset()["left"] < -($(rowImages[i]).width() / 2)) {
+                return false
+            }
+        }
+        return true
+    }
+
+    // Dynamically add images while viewport is not filled
+    fillVisibleArea() {
+        let row1HTML = $(".row-1").html()
+        let row2HTML = $(".row-2").html()
+
+        do {
+            $(".row-1").append(row1HTML)
+        } while (this.isViewportNotFilled(".row-1"))
+
+        do {
+            $(".row-2").append(row2HTML)
+        } while (this.isViewportNotFilled(".row-2"))
+    }
+
     // Enables button event listener
     enableButtons() {
         $(".button").click((event) => {
@@ -187,7 +212,24 @@ class Slider {
     }
 }
 var slider
+
 $(document).ready(() => {
     slider = new Slider()
     slider.firstClick()
+
+    // After all images are loaded
+    var imagesLoaded = 0
+    var totalImages = $(".container__slider img").length
+
+  
+    $(".container__slider img").each(function (idx, img) {
+        $("<img>").on("load", imageLoaded).attr("src", $(img).attr("src"))
+    })
+
+    function imageLoaded() {
+        imagesLoaded++
+        if (imagesLoaded == totalImages) {
+            slider.fillVisibleArea()
+        }
+    }
 });
